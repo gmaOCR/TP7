@@ -127,3 +127,31 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.idea/.gitignore
+/Scripts/activate
+/Scripts/activate.bat
+/Scripts/activate.fish
+/Scripts/activate.nu
+/Scripts/activate.ps1
+/Scripts/activate_this.py
+/Scripts/deactivate.bat
+/Scripts/deactivate.nu
+/.idea/misc.xml
+/.idea/modules.xml
+/optimized.py
+/Scripts/pip.exe
+/Scripts/pip3.10.exe
+/Scripts/pip3.exe
+/Scripts/pip-3.10.exe
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/Scripts/pydoc.bat
+/Scripts/python.exe
+/Scripts/pythonw.exe
+/pyvenv.cfg
+/.idea/TP7V2.iml
+/.idea/vcs.xml
+/Scripts/wheel.exe
+/Scripts/wheel3.10.exe
+/Scripts/wheel3.exe
+/Scripts/wheel-3.10.exe
