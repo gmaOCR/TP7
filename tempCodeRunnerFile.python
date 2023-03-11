@@ -1,0 +1,67 @@
+import itertools
+
+class Action:
+    def __init__(self, id, valeur, rendement):
+        self.id = id
+        self.valeur = valeur
+        self.rendement = rendement
+
+def create_action_obj_list(liste_actions, liste_rendements):
+    actions_obj_list = []
+    for i in range(len(liste_actions)):
+        actions_obj_list.append(Action(i + 1, liste_actions[i], liste_rendements[i]))
+    return actions_obj_list
+
+def list_all_combinations(action_obj_list):
+    combinations = []
+    for i in range(1, len(action_obj_list) + 1):
+        for c in itertools.combinations(action_obj_list, i):
+            combinations.append(list(c))
+    return combinations
+
+def filter_combinations_by_value(combination_list, max_value):
+    filtered_combinations = []
+    for c in combination_list:
+        if sum(action.valeur for action in c) <= max_value:
+            filtered_combinations.append(c)
+    return filtered_combinations
+actions_list = [20, 30, 50, 70, 60, 80, 22, 26, 48, 34, 42, 110, 38, 14, 18, 8, 4, 10, 24, 114]
+rendements_list = [5, 10, 15, 20, 17, 25, 7, 11, 13, 27, 17, 9, 23, 1, 3, 8, 12, 14, 21, 18]
+
+# Création de la liste d'objets Action à partir des listes d'entiers
+action_obj_list = create_action_obj_list(actions_list, rendements_list)
+
+# Liste toutes les combinaisons possibles de 20 actions maximum sans remises
+all_combinations = list_all_combinations(action_obj_list)[:1048576] # limite de combinaisons fixées à 2^20
+
+# Filtrage des combinaisons en ne conservant que celles dont la somme des valeurs est inférieure ou égale à 500
+filtered_combinations = filter_combinations_by_value(all_combinations, 500)
+
+# Affichage du nombre de combinaisons filtrées
+print("Nombre de combinaisons avec une somme des valeurs <= 500 :", len(filtered_combinations))
+
+def find_combination_with_highest_rendement(filtered_combinations):
+    sorted_combinations = sorted(filtered_combinations, key=lambda c: sum(action.rendement for action in c), reverse=True)
+    return sorted_combinations[0]
+def display_combinations_with_highest_rendement_per_iteration(filtered_combinations):
+    sorted_combinations = sorted(filtered_combinations, key=lambda c: sum(action.rendement for action in c), reverse=True)
+    for i, c in enumerate(sorted_combinations):
+        value_sum = sum(action.valeur for action in c)
+        rendement_sum = sum(action.rendement for action in c)
+        print(f"Iteration {i+1} - Valeur: {value_sum}, Rendement: {rendement_sum}, Combinaison: {c}")
+def find_combination_with_highest_rendement(filtered_combinations):
+    sorted_combinations = sorted(filtered_combinations, key=lambda c: sum(action.rendement for action in c), reverse=True)
+    return sorted_combinations[0]
+
+def display_combinations_with_highest_rendement_per_iteration(filtered_combinations):
+    sorted_combinations = sorted(filtered_combinations, key=lambda c: sum(action.rendement for action in c), reverse=True)
+    for i, c in enumerate(sorted_combinations):
+        value_sum = sum(action.valeur for action in c)
+        rendement_sum = sum(action.rendement for action in c)
+        print(f"Iteration {i+1} - Valeur: {value_sum}, Rendement: {rendement_sum}, Combinaison: {c}")
+
+# Usage
+highest_rendement_combination = find_combination_with_highest_rendement(filtered_combinations)
+print(f"La combinaison avec le rendement total le plus élevé est : {highest_rendement_combination}")
+
+display_combinations_with_highest_rendement_per_iteration(filtered_combinations)

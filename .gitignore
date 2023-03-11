@@ -19,6 +19,10 @@ lib64/
 parts/
 sdist/
 var/
+etc/
+Scripts/
+share/
+.idea/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
