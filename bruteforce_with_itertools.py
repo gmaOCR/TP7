@@ -1,3 +1,5 @@
+import itertools
+
 class Action:
     def __init__(self, id, valeur, rendement):
         self.id = id
@@ -20,32 +22,9 @@ def create_action_obj_list(liste_actions, liste_rendements):
         actions_obj_list.append(Action(i + 1, liste_actions[i], liste_rendements[i]))
     return actions_obj_list
 
-def generate_combinations(action_list, r):
-    """
-    Génère toutes les combinaisons possibles de longueur r à partir de action_list.
-    
-    Args:
-        action_list (list[Action]): Liste d'objets Action
-        r (int): Longueur des combinaisons
-        
-    Returns:
-        list[list[Action]]: Liste de toutes les combinaisons possibles de longueur r
-    """
-    if r == 0:
-        return [[]]
-        
-    else:
-        combinations = []
-        for i in range(len(action_list)):
-            current_action = action_list[i]
-            remaining_actions = action_list[i+1:]
-            for sub_combination in generate_combinations(remaining_actions, r-1):
-                combinations.append([current_action] + sub_combination)
-        return combinations
-
 def list_all_combinations(action_obj_list):
     """Liste toutes les possibilités de combinaisons sans remises d'une liste d'action
-    de portée N. N'utilise pas itertools.
+    de portée N. Utilise itertools
 
     Args:
         action_obj_list (object_list): Liste d'objets Actions
@@ -53,11 +32,11 @@ def list_all_combinations(action_obj_list):
     Returns:
         _type_: Renvoie une liste d'objets Action de toutes les combinaisons possibles
     """
-    all_combinations = []
-    for r in range(1, len(action_obj_list) + 1):
-        combinations = generate_combinations(action_obj_list, r)
-        all_combinations.extend(combinations)
-    return all_combinations
+    combinations = []
+    for i in range(1, len(action_obj_list) + 1):
+        for c in itertools.combinations(action_obj_list, i):
+            combinations.append(list(c))
+    return combinations
 
 def filter_combinations_by_value(combination_list, max_value):
     """Filtre une liste de combinaisons d'objets suivant une valeur maximale définie
@@ -82,7 +61,7 @@ rendements_list = [5, 10, 15, 20, 17, 25, 7, 11, 13, 27, 17, 9, 23, 1, 3, 8, 12,
 action_obj_list = create_action_obj_list(actions_list, rendements_list)
 
 # Liste toutes les combinaisons possibles de 20 actions maximum sans remises
-all_combinations = list_all_combinations(action_obj_list)
+all_combinations = list_all_combinations(action_obj_list)[:1048576] # limite de combinaisons fixées à 2^20
 
 # Filtrage des combinaisons en ne conservant que celles dont la somme des valeurs est inférieure ou égale à 500
 filtered_combinations = filter_combinations_by_value(all_combinations, 500)
