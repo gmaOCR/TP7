@@ -158,6 +158,7 @@ dmypy.json
 /Scripts/wheel3.10.exe
 /Scripts/wheel3.exe
 /Scripts/wheel-3.10.exe
+<<<<<<< HEAD
 .vscode/extensions.json
 etc/jupyter/jupyter_server_config.d/jupyter_server_terminals.json
 etc/jupyter/jupyter_server_config.d/nbclassic.json
@@ -295,6 +296,19 @@ solution1_Python+P7.txt
 solution2_Python+P7.txt
 tempCodeRunnerFile.py
 tempCodeRunnerFile.python
+=======
+/pseudo-code
+/trash.py
+dataset1_Python+P7.csv
+dataset2_Python+P7.csv
+solution1_Python+P7.txt
+solution2_Python+P7.txt
+pseudo-code-optimized.txt
+pseudo-code-brute.md
+actions.csv
+actions.ods
+~$actions.ods
+>>>>>>> 223e6bf (update)
 test.py
 TP7.odp
 trash
