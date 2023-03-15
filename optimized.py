@@ -107,11 +107,11 @@ def run(path_list):
         action_obj_list = create_action_obj_list(actions_list[0],actions_list[1],actions_list[2])
         # Recherche de la meilleur combinaison possible, et son gain associé 
         best_combination, best_profit = find_best_combination(500, action_obj_list)
-        best_combination_str = ', '.join([f'{a.id}({a.valeur})' for a in best_combination]) # Convertion textuelle
+        best_combination_str = "".join([f'\n{a.id}({a.valeur})' for a in best_combination]) # Convertion textuelle
         #Valeur du porte-feuille d'actions
         total_value = sum(action.valeur for action in best_combination)
-        print("La valeur totale de la combinaison est :", total_value)
-        print("La combinaison la plus rentable est :", best_combination_str, "avec un profit de", round(best_profit/100, 2)) 
+        print("\n""La valeur totale de la combinaison est :", total_value)
+        print("La combinaison la plus rentable est :", best_combination_str,"\n""avec un profit de", round(best_profit/100, 2)) 
 
 
 path_list = ["dataset1_Python+P7.csv","dataset2_Python+P7.csv"]
